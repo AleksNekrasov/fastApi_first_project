@@ -58,4 +58,4 @@ user_data_bob = {
     "contacts": {"phone": "+987654321", "email": "bob.smith@example.com"}
 }
 
-run(add_full_user(user_data=user_data_bob))
+#run(add_full_user(user_data=user_data_bob))

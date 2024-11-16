@@ -1,14 +1,30 @@
 """Теперь, для того, чтоб это все работало,
 нам необходимо создать дочерний класс под каждую таблицу.
 Для этого, в корне пакета dao, давайте создадим файл dao.py и опишем дочерние классы."""
+
+from sqlalchemy import values, select
 from sqlalchemy.ext.asyncio import AsyncConnection, AsyncSession
 
 from dao.base import BaseDAO
 from models import Profile, User, Post, Comment
 
-
 class UserDAO(BaseDAO):
     model = User
+
+    # Начнем с простого примера получения всех записей из таблицы
+    @classmethod
+    async def get_all_users(cls, session: AsyncSession):
+        # Создаем запрос для выборки всех пользователей
+        query = select(cls.model)
+
+        # Выполняем запрос и получаем результат
+        result = await session.execute(query)
+
+        # Извлекаем записи как объекты модели
+        records = result.scalars().all()
+
+        # Возвращаем список всех пользователей
+        return records
 
     @classmethod
     async def add_user_with_profile(cls, session: AsyncSession, user_data: dict) -> User:

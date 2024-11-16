@@ -38,20 +38,20 @@ class BaseDAO:
         return new_instances
 
     # Начнем с простого примера получения всех записей из таблицы
-    @classmethod
-    async def get_all_users(cls, session: AsyncSession):
-
-        # Создаем запрос для выборки всех пользователей
-        query = select(cls.model)
-
-        # Выполняем запрос и получаем результат
-        result = await session.execute(query)
-
-        # Извлекаем записи как объекты модели
-        records = result.scalars().all()
-
-        # Возвращаем список всех пользователей
-        return records
+    # @classmethod
+    # async def get_all_users(cls, session: AsyncSession):
+    #
+    #     # Создаем запрос для выборки всех пользователей
+    #     query = select(cls.model)
+    #
+    #     # Выполняем запрос и получаем результат
+    #     result = await session.execute(query)
+    #
+    #     # Извлекаем записи как объекты модели
+    #     records = result.scalars().all()
+    #
+    #     # Возвращаем список всех пользователей
+    #     return records
 
 
 
